@@ -6,6 +6,7 @@ import com.mercadolibre.mutants.exceptions.BadRequestException;
 import com.mercadolibre.mutants.exceptions.ForbiddenException;
 import com.mercadolibre.mutants.exceptions.InternalServerException;
 import com.mercadolibre.mutants.models.Mutant;
+import com.mercadolibre.mutants.models.MutantStats;
 import com.mercadolibre.mutants.repositories.MutantRepository;
 import com.mercadolibre.mutants.services.impl.CheckMutantService;
 import com.mercadolibre.mutants.services.impl.CheckValidDnaService;
@@ -18,6 +19,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -39,15 +41,21 @@ public class MutantServiceTest {
 
     @Test
     public void whenFailDatabaseSaveThenThrowsInternalServerException() {
-        this.service = new MutantService(mockValidDna(), mockMutant(), mockFailedRepository(), mock(MutantStatsService.class));
+        this.service = new MutantService(mockValidDna(), mockMutant(), mockFailedRepository(), mockMutantStatsService());
         assertThrows(InternalServerException.class, () -> this.service.isMutant(mockMutantRequest()));
     }
 
     @Test
     public void whenSuccessThenReturnMutantResponse() {
-        this.service = new MutantService(mockValidDna(), mockMutant(), mockSuccessRepository(), mock(MutantStatsService.class));
+        this.service = new MutantService(mockValidDna(), mockMutant(), mockSuccessRepository(), mockMutantStatsService());
         final MutantResponse mutantResponseReference = MutantResponse.builder().isMutant(true).build();
         assertEquals(mutantResponseReference, this.service.isMutant(mockMutantRequest()));
+    }
+
+    @Test
+    public void whenNullStatsThenThrowInternalServerError() {
+        this.service = new MutantService(mockValidDna(), mockMutant(), mockSuccessRepository(), mock(MutantStatsService.class));
+        assertThrows(InternalServerException.class, () -> this.service.isMutant(mockMutantRequest()));
     }
 
     private CheckValidDnaService mockInvalidDna() {
@@ -90,5 +98,11 @@ public class MutantServiceTest {
         final MutantRequest mutantRequest = new MutantRequest();
         mutantRequest.setDna(List.of(""));
         return mutantRequest;
+    }
+
+    private MutantStatsService mockMutantStatsService() {
+        final MutantStatsService mutantStatsService = mock(MutantStatsService.class);
+        when(mutantStatsService.updateMutantStats(anyBoolean())).thenReturn(new MutantStats());
+        return mutantStatsService;
     }
 }

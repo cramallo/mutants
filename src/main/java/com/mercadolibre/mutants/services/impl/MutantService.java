@@ -7,6 +7,7 @@ import com.mercadolibre.mutants.exceptions.ForbiddenException;
 import com.mercadolibre.mutants.exceptions.InternalServerException;
 import com.mercadolibre.mutants.helpers.MutantsHelper;
 import com.mercadolibre.mutants.models.Mutant;
+import com.mercadolibre.mutants.models.MutantStats;
 import com.mercadolibre.mutants.repositories.MutantRepository;
 import com.mercadolibre.mutants.services.MutantServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,26 +31,32 @@ public class MutantService implements MutantServiceInterface {
     }
 
     public MutantResponse isMutant(final MutantRequest mutantRequest) {
-
-        if (this.checkValidDnaService.isValidDna(mutantRequest.getDna())) {
-            final boolean isMutant = checkMutantService.isMutant(mutantRequest.getDna());
-            mutantStatsService.updateMutantStats(isMutant);
-            if (isMutant) {
-                Mutant mutant = Mutant.builder().dna(MutantsHelper.listToString(mutantRequest.getDna())).build();
-                try {
-                    Mutant mutantDao = this.mutantRepository.save(mutant);
-                    return MutantResponse.builder().isMutant(true)
-                            .id(mutantDao.getId())
-                            .dna(mutantDao.getDna())
-                            .build();
-                } catch (Exception exception) {
-                    throw new InternalServerException(exception.getMessage());
-                }
-            }
-            throw new ForbiddenException("Not mutant DNA");
+        if (!this.checkValidDnaService.isValidDna(mutantRequest.getDna())) {
+            throw new BadRequestException("Invalid DNA sequence");
         }
-
-        throw new BadRequestException("Invalid DNA sequence");
+        final boolean isMutant = checkMutantService.isMutant(mutantRequest.getDna());
+        MutantStats mutantStats = mutantStatsService.updateMutantStats(isMutant);
+        if (isMutant) {
+            return saveMutant(mutantStats, mutantRequest);
+        }
+        throw new ForbiddenException("Not mutant DNA");
     }
 
+    private MutantResponse saveMutant(final MutantStats mutantStats, final MutantRequest mutantRequest) {
+        if (mutantStats == null) {
+            throw new InternalServerException("Could not save stats");
+        }
+        Mutant mutant = Mutant.builder().dna(MutantsHelper.listToString(mutantRequest.getDna())).build();
+        try {
+            Mutant mutantDao = this.mutantRepository.save(mutant);
+            return MutantResponse.builder().isMutant(true)
+                    .id(mutantDao.getId())
+                    .dna(mutantDao.getDna())
+                    .build();
+        } catch (Exception exception) {
+            throw new InternalServerException(exception.getMessage());
+        }
+    }
 }
+
+
