@@ -20,4 +20,5 @@ public class CheckValidDnaService {
         int rows = dna.size();
         return dna.stream().allMatch(columns -> columns.length() == rows);
     }
+
 }

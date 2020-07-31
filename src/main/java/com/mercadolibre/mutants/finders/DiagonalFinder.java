@@ -10,7 +10,7 @@ public class DiagonalFinder extends Finder {
 
     @Override
     public int check(final int xOrigin, final int yOrigin, final String word) {
-        if ((xOrigin > 0 && yOrigin > 0 && !shouldCheck[xOrigin][yOrigin]) || (xOrigin + LIMIT_CHARACTERS_SEQUENCE > dna.size() || yOrigin + LIMIT_CHARACTERS_SEQUENCE > dna.size())) {
+        if (shouldNotCheck(xOrigin, yOrigin) || outOfLimits(xOrigin, yOrigin)) {
             return 0;
         }
         String aux = word;
@@ -35,5 +35,12 @@ public class DiagonalFinder extends Finder {
         return 0;
     }
 
+    private boolean shouldNotCheck(int xOrigin, int yOrigin) {
+        return xOrigin > 0 && yOrigin > 0 && !shouldCheck[xOrigin][yOrigin] && !shouldCheck[xOrigin][yOrigin];
+    }
+
+    private boolean outOfLimits(int xOrigin, int yOrigin) {
+        return xOrigin + LIMIT_CHARACTERS_SEQUENCE > dna.size() || yOrigin + LIMIT_CHARACTERS_SEQUENCE > dna.size();
+    }
 
 }

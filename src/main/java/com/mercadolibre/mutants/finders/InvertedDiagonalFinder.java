@@ -9,8 +9,7 @@ public class InvertedDiagonalFinder extends Finder {
 
     @Override
     public int check(final int xOrigin, final int yOrigin, final String word) {
-        if ((xOrigin > 0 && yOrigin < 5 && !shouldCheck[xOrigin][yOrigin])
-                || (xOrigin + LIMIT_CHARACTERS_SEQUENCE > dna.size() || yOrigin - (LIMIT_CHARACTERS_SEQUENCE - 1) < 0)) {
+        if (shouldNotCheck(xOrigin, yOrigin) || (outOfLimits(xOrigin, yOrigin))) {
             return 0;
         }
 
@@ -34,5 +33,13 @@ public class InvertedDiagonalFinder extends Finder {
         shouldCheck[xCurrent - 1][yCurrent + 1] = true;
 
         return 0;
+    }
+
+    private boolean shouldNotCheck(int xOrigin, int yOrigin) {
+        return xOrigin > 0 && yOrigin < 5 && !shouldCheck[xOrigin][yOrigin];
+    }
+
+    private boolean outOfLimits(int xOrigin, int yOrigin) {
+        return xOrigin + LIMIT_CHARACTERS_SEQUENCE > dna.size() || yOrigin - (LIMIT_CHARACTERS_SEQUENCE - 1) < 0;
     }
 }

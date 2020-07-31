@@ -1,21 +1,23 @@
 package com.mercadolibre.mutants.models;
 
-import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.time.LocalDateTime;
 
-@EqualsAndHashCode
-@Builder
 @Data
+@NoArgsConstructor
 @Entity
-public class Mutant {
+public class MutantStats {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String dna;
+    private long humansCount;
+    private long mutantsCount;
+    private Double mutantsRatio;
+    private LocalDateTime lastUpdate;
 }

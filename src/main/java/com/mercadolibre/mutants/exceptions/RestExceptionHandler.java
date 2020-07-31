@@ -29,4 +29,14 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                 .build();
         return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @ExceptionHandler({ForbiddenException.class})
+    public final ResponseEntity<ExceptionDetails> handleForbiddenException(final ForbiddenException forbiddenError, final WebRequest request) {
+        final ExceptionDetails errorDetails = ExceptionDetails.builder()
+                .message(forbiddenError.getMessage())
+                .status(HttpStatus.FORBIDDEN)
+                .statusCode(HttpStatus.FORBIDDEN.value())
+                .build();
+        return new ResponseEntity<>(errorDetails, HttpStatus.FORBIDDEN);
+    }
 }
