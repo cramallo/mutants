@@ -30,7 +30,7 @@ public class MutantController {
     @PostMapping
     @ApiOperation(value = "Return created mutant", response = MutantResponse.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = SwaggerMessages.getSuccess),
+            @ApiResponse(code = 200, message = SwaggerMessages.createSuccess),
             @ApiResponse(code = 400, message = SwaggerMessages.badRequest),
             @ApiResponse(code = 403, message = SwaggerMessages.forbidden),
             @ApiResponse(code = 404, message = SwaggerMessages.notFound),
