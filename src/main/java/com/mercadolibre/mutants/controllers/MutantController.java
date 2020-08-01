@@ -6,7 +6,6 @@ import com.mercadolibre.mutants.dtos.MutantResponse;
 import com.mercadolibre.mutants.models.MutantStats;
 import com.mercadolibre.mutants.services.MutantService;
 import com.mercadolibre.mutants.services.MutantStatsService;
-import com.mercadolibre.mutants.services.impl.MutantStatsServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;

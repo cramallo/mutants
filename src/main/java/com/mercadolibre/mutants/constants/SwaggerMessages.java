@@ -7,8 +7,4 @@ public class SwaggerMessages {
     public static final String notFound = "The resource you were trying to reach is not found";
     public static final String forbidden = "The resource you were trying to create is not mutant";
     public static final String internalServerError = "The resource could not be retrieved for internal server error";
-
-    private SwaggerMessages() {
-        throw new AssertionError();
-    }
 }

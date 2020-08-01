@@ -1,8 +1,7 @@
 package com.mercadolibre.mutants.models;
 
 import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,9 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
 
-@EqualsAndHashCode
 @Builder
-@Data
+@Getter
 @Entity
 public class Mutant {
     @Id
