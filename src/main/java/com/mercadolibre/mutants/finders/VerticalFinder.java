@@ -10,16 +10,16 @@ public class VerticalFinder extends Finder {
 
     @Override
     public int check(final int xOrigin, final int yOrigin, final String word) {
-        if ((xOrigin > 0 && !shouldCheck[xOrigin][yOrigin]) || (xOrigin + LIMIT_CHARACTERS_SEQUENCE > dna.size())) {
+        if ((xOrigin > 0 && !shouldCheck[xOrigin][yOrigin]) || (xOrigin + LIMIT_CHARACTERS_SEQUENCE > limit)) {
             return 0;
         }
 
-        String aux = word.toUpperCase();
+        String aux = word;
         int xCurrent = xOrigin;
 
         while (correctSequence(aux) && xCurrent + 1 < xOrigin + LIMIT_CHARACTERS_SEQUENCE) {
             xCurrent++;
-            String currentWord = String.valueOf(dna.get(xCurrent).charAt(yOrigin)).toUpperCase();
+            String currentWord = String.valueOf(dna.get(xCurrent).charAt(yOrigin));
             aux = aux.concat(currentWord);
         }
 

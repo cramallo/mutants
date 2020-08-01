@@ -13,14 +13,14 @@ public class InvertedDiagonalFinder extends Finder {
             return 0;
         }
 
-        String aux = word.toUpperCase();
+        String aux = word;
 
         int xCurrent = xOrigin + 1;
         int yCurrent = yOrigin - 1;
 
         while (correctSequence(aux) && currentOutOfLimits(xOrigin, xCurrent, yOrigin, yCurrent)) {
             char current = dna.get(xCurrent).charAt(yCurrent);
-            aux = aux.concat(String.valueOf(current).toUpperCase());
+            aux = aux.concat(String.valueOf(current));
             xCurrent++;
             yCurrent--;
         }
@@ -40,7 +40,7 @@ public class InvertedDiagonalFinder extends Finder {
     }
 
     private boolean originOutOfLimits(final int xOrigin, final int yOrigin) {
-        return xOrigin + LIMIT_CHARACTERS_SEQUENCE > dna.size() || yOrigin - (LIMIT_CHARACTERS_SEQUENCE - 1) < 0;
+        return xOrigin + LIMIT_CHARACTERS_SEQUENCE > limit || yOrigin - (LIMIT_CHARACTERS_SEQUENCE - 1) < 0;
     }
 
     private boolean currentOutOfLimits(final int xOrigin, final int xCurrent, final int yOrigin, final int yCurrent) {

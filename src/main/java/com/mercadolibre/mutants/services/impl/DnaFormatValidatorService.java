@@ -13,7 +13,7 @@ public class DnaFormatValidatorService {
     }
 
     private boolean isCorrectDnaSequence(final List<String> dna) {
-        return dna != null && !dna.isEmpty() && dna.stream().allMatch(word -> Pattern.matches("[ACGT]+", word.toUpperCase()));
+        return dna != null && !dna.isEmpty() && dna.stream().allMatch(word -> Pattern.matches("[ACGTacgt]+", word));
     }
 
     private boolean isSquareMatrix(final List<String> dna) {
