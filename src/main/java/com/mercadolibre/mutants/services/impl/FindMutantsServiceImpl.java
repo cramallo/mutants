@@ -18,7 +18,7 @@ public class FindMutantsServiceImpl implements FindMutantsService {
         final int limit = dna.size();
         DiagonalFinder diagonalFinder = new DiagonalFinder(limit, limit, dna);
         VerticalFinder verticalFinder = new VerticalFinder(limit, limit, dna);
-        InvertedDiagonalFinder invertedDiagonalFinder = new InvertedDiagonalFinder(6, 6, dna);
+        InvertedDiagonalFinder invertedDiagonalFinder = new InvertedDiagonalFinder(limit, limit, dna);
 
         int mutants = 0;
         for (int row = 0; row < limit && mutants < MIN_SEQUENCES; row++) {

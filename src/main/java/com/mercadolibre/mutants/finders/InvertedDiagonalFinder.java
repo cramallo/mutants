@@ -9,7 +9,7 @@ public class InvertedDiagonalFinder extends Finder {
 
     @Override
     public int check(final int xOrigin, final int yOrigin, final String word) {
-        if (shouldNotCheck(xOrigin, yOrigin) || (originOutOfLimits(xOrigin, yOrigin))) {
+        if (shouldNotCheck(xOrigin, yOrigin) || originOutOfLimits(xOrigin, yOrigin)) {
             return 0;
         }
 
