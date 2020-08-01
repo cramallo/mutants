@@ -3,12 +3,13 @@ package com.mercadolibre.mutants.services.impl;
 import com.mercadolibre.mutants.finders.DiagonalFinder;
 import com.mercadolibre.mutants.finders.InvertedDiagonalFinder;
 import com.mercadolibre.mutants.finders.VerticalFinder;
+import com.mercadolibre.mutants.services.FindMutantsService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CheckMutantService {
+public class FindMutantsServiceImpl implements FindMutantsService {
 
     private static final List<String> REFERENCE = List.of("AAAA", "CCCC", "GGGG", "TTTT");
     private static final int MIN_SEQUENCES = 2;
@@ -20,21 +21,20 @@ public class CheckMutantService {
         InvertedDiagonalFinder invertedDiagonalFinder = new InvertedDiagonalFinder(6, 6, dna);
 
         int mutants = 0;
-        int x = 0;
-        while (x < limit && mutants < MIN_SEQUENCES) {
-            mutants += checkHorizontal(dna.get(x));
-            for (int j = 0; j < limit; j++) {
-                mutants += diagonalFinder.check(x, j, String.valueOf(dna.get(x).charAt(j)));
-                mutants += verticalFinder.check(x, j, String.valueOf(dna.get(x).charAt(j)));
-                mutants += invertedDiagonalFinder.check(x, j, String.valueOf(dna.get(x).charAt(j)));
+        for (int row = 0; row < limit && mutants < MIN_SEQUENCES; row++) {
+            mutants += checkHorizontal(dna.get(row));
+            for (int col = 0; col < limit && mutants < MIN_SEQUENCES; col++) {
+                mutants += diagonalFinder.check(row, col, String.valueOf(dna.get(row).charAt(col)));
+                mutants += verticalFinder.check(row, col, String.valueOf(dna.get(row).charAt(col)));
+                mutants += invertedDiagonalFinder.check(row, col, String.valueOf(dna.get(row).charAt(col)));
             }
-            x++;
         }
+
         return mutants > 1;
     }
 
     private long checkHorizontal(final String word) {
-        return REFERENCE.stream().filter(sequence -> word.contains(sequence)).count();
+        return REFERENCE.stream().filter(sequence -> word.toUpperCase().contains(sequence)).count();
     }
 
 }

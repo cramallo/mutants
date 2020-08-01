@@ -2,7 +2,7 @@
 
 ## Exercise
 
-### Check if DNA sequence is mutant or not and persist stats. 
+### Check if DNA sequence is mutant or not and persist stats 
 The exercise consist on create an endpoint that will receive a DNA sequence by a **POST** request made like this:
 
 ```

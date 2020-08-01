@@ -4,8 +4,9 @@ import com.mercadolibre.mutants.constants.SwaggerMessages;
 import com.mercadolibre.mutants.dtos.MutantRequest;
 import com.mercadolibre.mutants.dtos.MutantResponse;
 import com.mercadolibre.mutants.models.MutantStats;
-import com.mercadolibre.mutants.services.MutantServiceInterface;
-import com.mercadolibre.mutants.services.impl.MutantStatsService;
+import com.mercadolibre.mutants.services.MutantService;
+import com.mercadolibre.mutants.services.MutantStatsService;
+import com.mercadolibre.mutants.services.impl.MutantStatsServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -18,11 +19,11 @@ import org.springframework.web.bind.annotation.*;
 @Api
 public class MutantController {
 
-    private final MutantServiceInterface mutantService;
+    private final MutantService mutantService;
     private final MutantStatsService mutantStatsService;
 
     @Autowired
-    public MutantController(final MutantServiceInterface mutantService, final MutantStatsService mutantStatsService) {
+    public MutantController(final MutantService mutantService, final MutantStatsService mutantStatsService) {
         this.mutantService = mutantService;
         this.mutantStatsService = mutantStatsService;
     }

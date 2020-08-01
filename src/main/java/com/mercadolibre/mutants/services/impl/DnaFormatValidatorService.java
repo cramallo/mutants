@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 @Service
-public class CheckValidDnaService {
+public class DnaFormatValidatorService {
 
     public boolean isValidDna(final List<String> dna) {
         return isCorrectDnaSequence(dna) && isSquareMatrix(dna);

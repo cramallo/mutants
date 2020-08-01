@@ -1,6 +1,6 @@
 package com.mercadolibre.mutants.services;
 
-import com.mercadolibre.mutants.services.impl.CheckValidDnaService;
+import com.mercadolibre.mutants.services.impl.DnaFormatValidatorService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -10,14 +10,14 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class CheckValidDnaServiceTest {
+public class DnaFormatValidatorServiceTest {
 
     @InjectMocks
-    private CheckValidDnaService service;
+    private DnaFormatValidatorService service;
 
     @BeforeEach
     public void setup() {
-        this.service = new CheckValidDnaService();
+        this.service = new DnaFormatValidatorService();
     }
 
     @Test

@@ -3,6 +3,6 @@ package com.mercadolibre.mutants.services;
 import com.mercadolibre.mutants.dtos.MutantRequest;
 import com.mercadolibre.mutants.dtos.MutantResponse;
 
-public interface MutantServiceInterface {
+public interface MutantService {
     MutantResponse isMutant(MutantRequest mutantRequest);
 }

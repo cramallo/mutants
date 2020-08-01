@@ -3,8 +3,8 @@ package com.mercadolibre.mutants.controllers;
 import com.mercadolibre.mutants.dtos.MutantRequest;
 import com.mercadolibre.mutants.dtos.MutantResponse;
 import com.mercadolibre.mutants.models.MutantStats;
-import com.mercadolibre.mutants.services.impl.MutantService;
-import com.mercadolibre.mutants.services.impl.MutantStatsService;
+import com.mercadolibre.mutants.services.MutantService;
+import com.mercadolibre.mutants.services.MutantStatsService;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,7 +21,7 @@ public class MutantControllerTest {
     }
 
     @Test
-    public void whenSuccessGetSatsThenReturnMutantStats() {
+    public void whenSuccessGetStatsThenReturnMutantStats() {
         final MutantController mutantController = new MutantController(null, mockMutantStatsService());
         assertEquals(new MutantStats(), mutantController.getLastStats());
     }

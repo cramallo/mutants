@@ -14,12 +14,12 @@ public class VerticalFinder extends Finder {
             return 0;
         }
 
-        String aux = word;
+        String aux = word.toUpperCase();
         int xCurrent = xOrigin;
 
         while (correctSequence(aux) && xCurrent + 1 < xOrigin + LIMIT_CHARACTERS_SEQUENCE) {
             xCurrent++;
-            String currentWord = String.valueOf(dna.get(xCurrent).charAt(yOrigin));
+            String currentWord = String.valueOf(dna.get(xCurrent).charAt(yOrigin)).toUpperCase();
             aux = aux.concat(currentWord);
         }
 

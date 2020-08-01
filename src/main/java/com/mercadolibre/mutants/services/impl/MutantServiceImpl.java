@@ -9,32 +9,34 @@ import com.mercadolibre.mutants.helpers.MutantsHelper;
 import com.mercadolibre.mutants.models.Mutant;
 import com.mercadolibre.mutants.models.MutantStats;
 import com.mercadolibre.mutants.repositories.MutantRepository;
-import com.mercadolibre.mutants.services.MutantServiceInterface;
+import com.mercadolibre.mutants.services.FindMutantsService;
+import com.mercadolibre.mutants.services.MutantService;
+import com.mercadolibre.mutants.services.MutantStatsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MutantService implements MutantServiceInterface {
+public class MutantServiceImpl implements MutantService {
 
-    private final CheckValidDnaService checkValidDnaService;
-    private final CheckMutantService checkMutantService;
+    private final DnaFormatValidatorService dnaFormatValidatorService;
+    private final FindMutantsService findMutantsService;
     private final MutantStatsService mutantStatsService;
     private final MutantRepository mutantRepository;
 
     @Autowired
-    public MutantService(final CheckValidDnaService checkValidDnaService, final CheckMutantService checkMutantService,
-                         final MutantRepository mutantRepository, final MutantStatsService mutantStatsService) {
-        this.checkValidDnaService = checkValidDnaService;
-        this.checkMutantService = checkMutantService;
+    public MutantServiceImpl(final DnaFormatValidatorService dnaFormatValidatorService, final FindMutantsServiceImpl findMutantsService,
+                             final MutantRepository mutantRepository, final MutantStatsServiceImpl mutantStatsService) {
+        this.dnaFormatValidatorService = dnaFormatValidatorService;
+        this.findMutantsService = findMutantsService;
         this.mutantRepository = mutantRepository;
         this.mutantStatsService = mutantStatsService;
     }
 
     public MutantResponse isMutant(final MutantRequest mutantRequest) {
-        if (!this.checkValidDnaService.isValidDna(mutantRequest.getDna())) {
+        if (!this.dnaFormatValidatorService.isValidDna(mutantRequest.getDna())) {
             throw new BadRequestException("Invalid DNA sequence");
         }
-        final boolean isMutant = checkMutantService.isMutant(mutantRequest.getDna());
+        final boolean isMutant = findMutantsService.isMutant(mutantRequest.getDna());
         MutantStats mutantStats = mutantStatsService.saveMutantStats(isMutant);
         if (isMutant) {
             return saveMutant(mutantStats, mutantRequest);
