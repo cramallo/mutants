@@ -47,7 +47,7 @@ because it was made for don't pass for the same position when searching in a loo
 
 - I added Swagger for API information.
 
-- The code coverage is 96%.
+- The code coverage is 100% (checked with IntelliJ IDEA Coverage Tool).
 
 ## Deployed endpoints
 
