@@ -1,4 +1,4 @@
-# Mutans code challenge
+# Mutants code challenge
 
 ## Exercise
 
@@ -19,7 +19,7 @@ The characters allowed are (A,T,C,G). And the matrix must be NXN.
 
 ### Get the last persisted stats
 
-The second enpoint is made to request about the last stats(GET request), that were persisted and it was explained in the first part.
+The second endpoint is made to request about the last stats(GET request), that were persisted and it was explained in the first part.
 
 Example of asked response:
 
@@ -39,7 +39,7 @@ Example of asked response:
 
 ## About the solution
 
-- I tried to make the code the most modularized as possible. I used inherence for Classes that had similiar behavior and 
+- I tried to make the code the most modularized as possible. I used inheritance for Classes that had similar behavior and 
 dependency injection when it's needed.
 
 - According to the search indeed I created for each direction a boolean matrix. This matrix decrease the searching time,
@@ -47,7 +47,7 @@ because it was made for don't pass for the same position when searching in the l
 
 - I added Swagger for API information.
 
-- The code coverage is 88%
+- The code coverage is 88%.
 
 ## Deployed endpoints
 
@@ -76,7 +76,7 @@ You can check the information about this endpoint in [swaager](https://magneto-m
 - Download **SKDMAN**, follow instructions [here](https://sdkman.io/install)
 - Install Java 11 with SKDMAN, follow the example [here](https://sdkman.io/usage)
 - Install PostgresSQL, you can download it from [here]( https://www.postgresql.org/download/)
-- Changes the file application.properties accoding with your port and username and password database configuration
+- Changes the file application.properties according with your port and username and password database configuration
 
 
 
