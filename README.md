@@ -1,8 +1,31 @@
-# MUTANTS CODE CHALLENGE
+# Mutans code challenge
 
 ## Exercise
 
+### Consult if dna is mutant or not and persist stats. 
+The exercise consist on create an endpoint that will receive a DNA sequence by a **POST** request made like this:
 
+```
+{
+    String[] dna = {"ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"};
+}
+```
+
+With this I have to create a method that will check if it's a valid sequence, check if this dna is human or mutant,
+save the stats about the humand count, mutant count and mutant ratio, and then save the dna in a database if the DNA
+is mutant.
+
+The characters allowed are (A,T,C,G). And the matrix must be NXN.
+
+### Get the last persisted stats
+
+The second enpoint is made to request about the last stats(GET request), that were persisted and it was explained in the first part.
+
+Example of asked response:
+
+```
+{“count_mutant_dna”:40, “count_human_dna”:100: “ratio”:0.4}
+```
 
 ## Technologies 
 
@@ -16,32 +39,36 @@
 
 ## About the solution
 
-I tried to make the code the most modularized as possible. I used inherence for Classes that had similiar behavior and 
+- I tried to make the code the most modularized as possible. I used inherence for Classes that had similiar behavior and 
 dependency injection when it's needed.
 
-According to the search indeed I created for each direction a boolean matrix. This matrix decrease the searching time,
+- According to the search indeed I created for each direction a boolean matrix. This matrix decrease the searching time,
 because it was made for don't pass for the same position when searching in the loop in some direction.
 
-I added Swagger for API information.
+- I added Swagger for API information.
 
-The code coverage is 88%
+- The code coverage is 88%
 
 ## Deployed endpoints
 
-### Post a dna sequence and get the response of the mutation created or 403 if it's not mutant.
+**Post a DNA sequence and get the response of the mutation created or 403 if it's not mutant.**
 
-The endpoint will check if the dna is or not mutants. A service will save the information about if it's human or 
-mutant and the actual ratio of mutants according with this las request for stats purposes.
+Below is the endpoint to send a **POST** request:
 
-If mutant then the DNA will be save in the database.
-
+```
 https://magneto-mutants.herokuapp.com/mutants
+```
+
+You can check the information about this endpoint in [swaager](https://magneto-mutants.herokuapp.com/swagger-ui.html#/mutant-controller/isMutantUsingPOST)
  
-### Get stats about mutants ratio for all safe
+**Get stats about mutants ratio**
  
-This endpoint will return the mutants ratio about all the POST requests made, and see how many of the DNA were human or mutant.
- 
+Below is the **Get** request to get the stats.
+
+```
 https://magneto-mutants.herokuapp.com/mutants/stats
+```
+You can check the information about this endpoint in [swaager](https://magneto-mutants.herokuapp.com/swagger-ui.html#/mutant-controller/getLastStatsUsingGET)
 
 
 ## Instructions to execute the program locally
