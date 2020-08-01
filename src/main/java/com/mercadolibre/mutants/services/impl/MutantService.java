@@ -35,7 +35,7 @@ public class MutantService implements MutantServiceInterface {
             throw new BadRequestException("Invalid DNA sequence");
         }
         final boolean isMutant = checkMutantService.isMutant(mutantRequest.getDna());
-        MutantStats mutantStats = mutantStatsService.updateMutantStats(isMutant);
+        MutantStats mutantStats = mutantStatsService.saveMutantStats(isMutant);
         if (isMutant) {
             return saveMutant(mutantStats, mutantRequest);
         }

@@ -19,19 +19,19 @@ public class MutantStatsServiceTest {
     @Test
     public void whenFailDatabaseThenThrowInternalServerException() {
         this.service = new MutantStatsService(mockInvalidMutantsStatsRepository());
-        assertThrows(InternalServerException.class, () -> service.updateMutantStats(false));
+        assertThrows(InternalServerException.class, () -> service.saveMutantStats(false));
     }
 
     @Test
     public void whenSuccessThenReturnMutantStatsResponse() {
         this.service = new MutantStatsService(mockMutantStatsRepository());
-        assertEquals(new MutantStats(), service.updateMutantStats(false));
+        assertEquals(new MutantStats(), service.saveMutantStats(false));
     }
 
     @Test
     public void whenSuccessAndFirstSaveThenReturnMutantStatsResponse() {
         this.service = new MutantStatsService(mockMutantStatsFirstSave());
-        assertEquals(new MutantStats(), service.updateMutantStats(false));
+        assertEquals(new MutantStats(), service.saveMutantStats(false));
     }
 
     @Test

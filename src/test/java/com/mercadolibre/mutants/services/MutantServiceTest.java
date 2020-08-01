@@ -102,7 +102,7 @@ public class MutantServiceTest {
 
     private MutantStatsService mockMutantStatsService() {
         final MutantStatsService mutantStatsService = mock(MutantStatsService.class);
-        when(mutantStatsService.updateMutantStats(anyBoolean())).thenReturn(new MutantStats());
+        when(mutantStatsService.saveMutantStats(anyBoolean())).thenReturn(new MutantStats());
         return mutantStatsService;
     }
 }

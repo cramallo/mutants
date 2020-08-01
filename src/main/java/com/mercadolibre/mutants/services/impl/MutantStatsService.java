@@ -17,7 +17,7 @@ public class MutantStatsService {
         this.mutantStatsRepository = mutantStatsRepository;
     }
 
-    public MutantStats updateMutantStats(final boolean isMutant) {
+    public MutantStats saveMutantStats(final boolean isMutant) {
         try {
             final MutantStats mutantStats = this.mutantStatsRepository.findTopByOrderByIdDesc();
 
