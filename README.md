@@ -51,7 +51,7 @@ because it was made for don't pass for the same position when searching in a loo
 
 ## Deployed endpoints
 
-**Post a DNA sequence and get the response of the mutation created or 403 if it's not mutant.**
+**Post a DNA sequence and get the response of the mutation created or 403 if it's not mutant**
 
 Below is the endpoint to send a **POST** request:
 
@@ -59,7 +59,7 @@ Below is the endpoint to send a **POST** request:
 https://magneto-mutants.herokuapp.com/mutants
 ```
 
-You can check the information about this endpoint in [swaager](https://magneto-mutants.herokuapp.com/swagger-ui.html#/mutant-controller/isMutantUsingPOST)
+You can check the information about this endpoint in [swaager](https://magneto-mutants.herokuapp.com/swagger-ui.html#/mutant-controller/isMutantUsingPOST).
  
 **Get stats about mutants ratio**
  
@@ -68,15 +68,15 @@ Below is the **Get** request to get the stats.
 ```
 https://magneto-mutants.herokuapp.com/mutants/stats
 ```
-You can check the information about this endpoint in [swaager](https://magneto-mutants.herokuapp.com/swagger-ui.html#/mutant-controller/getLastStatsUsingGET)
+You can check the information about this endpoint in [swaager](https://magneto-mutants.herokuapp.com/swagger-ui.html#/mutant-controller/getLastStatsUsingGET).
 
 
 ## Instructions to execute the program locally
 
-- Download [SDKMAN](https://sdkman.io/install)
-- Install Java 11 with SKDMAN, follow the example [here](https://sdkman.io/usage)
-- Install [PostgresSQL]( https://www.postgresql.org/download/)
-- Changes the file application.properties according with your port and username and password database configuration
+- Download [SDKMAN](https://sdkman.io/install).
+- Install Java 11 with SKDMAN, follow the example [here](https://sdkman.io/usage).
+- Install [PostgresSQL]( https://www.postgresql.org/download/).
+- Changes the file application.properties according with your port and username and password database configuration.
 
 
 
