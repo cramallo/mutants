@@ -33,7 +33,7 @@ public class FindMutantsServiceImplTest {
     @Test
     public void whenNotCompleteSequenceThenReturnFalse() {
         FindMutantsService service = new FindMutantsServiceImpl();
-        boolean isMutant = service.isMutant(List.of("AGGT", "AATT", "ATAT", "TTTG"));
+        boolean isMutant = service.isMutant(List.of("AGGT", "AATT", "ATAT", "ATTG"));
         assertEquals(false, isMutant);
     }
 
